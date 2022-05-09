@@ -1,0 +1,14 @@
+{
+ "options": [
+  [
+   "ovfreaderwriter:shared",
+   "False"
+  ]
+ ],
+ "root": {
+  "name": null,
+  "version": null,
+  "user": "demo",
+  "channel": "testing"
+ }
+}

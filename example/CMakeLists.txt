@@ -1,0 +1,2 @@
+add_subdirectory(ex1_write)
+add_subdirectory(ex2_read)
