@@ -54,7 +54,6 @@ public:
     OvfFileReader(size_t auto_cache_threshold = 67108864);
     OvfFileReader(const OvfFileReader&) = delete;
     OvfFileReader& operator=(const OvfFileReader&) = delete;
-    ~OvfFileReader();
 
     void OpenFile(const std::string path, Job& job);
     void CloseFile();

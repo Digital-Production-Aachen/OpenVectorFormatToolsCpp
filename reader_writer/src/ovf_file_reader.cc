@@ -55,10 +55,6 @@ OvfFileReader::OvfFileReader(size_t auto_cache_threshold)
 {
 }
 
-OvfFileReader::~OvfFileReader()
-{
-}
-
 void OvfFileReader::OpenFile(const std::string path, Job& job)
 {
     CloseFile();
