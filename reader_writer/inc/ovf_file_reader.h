@@ -46,27 +46,104 @@ SOFTWARE.
 
 namespace open_vector_format::reader_writer {
 
-
+/**
+ * @brief Implements an incremental file reader for the open vector format.
+ */
 class OvfFileReader
 {
 public:
-    // 64MiB
+    /**
+     * @brief Construct a new OvfFileReader object
+     * 
+     * @param auto_cache_threshold The file size threshold in bytes up to which the
+     * full job will be cached to memory. Defaults to 64MiB. 
+     */
     OvfFileReader(size_t auto_cache_threshold = 67108864);
+    
+    // Deleting copy and copy assignment because we are handling file streams.
     OvfFileReader(const OvfFileReader&) = delete;
     OvfFileReader& operator=(const OvfFileReader&) = delete;
 
+    /**
+     * @brief Opens an existing ovf file.
+     * 
+     * @param path The path from which the file should be read.
+     * @param job A reference to the job object into which the job shell should be read.
+     */
     void OpenFile(const std::string path, Job& job);
+
+    /**
+     * @brief Closes the file and file stream.
+     */
     void CloseFile();
+    
+    /**
+     * @brief Reports whether currently a file is open.
+     */
     bool IsFileOpen() const;
 
+    /**
+     * @brief Gets a specific work plane from the currently open file.
+     * 
+     * Gets the full work plane, including all vector blocks.
+     * 
+     * @param i_work_plane The index of the work plane to get.
+     * @param wp A reference to the object into which the work plane should be read.
+     */
     void GetWorkPlane(const int i_work_plane, WorkPlane& wp) const;
+    
+    /**
+     * @brief Gets a specific work plane shell from the currently open file.
+     * 
+     * Only gets the work plane shell, without any vector blocks.
+     * 
+     * @param i_work_plane The index of the work plane to get.
+     * @param wp A reference to the object into which the work plane shell should be read.
+     */
     void GetWorkPlaneShell(const int i_work_plane, WorkPlane& wp) const;
+
+    /**
+     * @brief Gets a specific vector block on a specific work plane from the currently open file.
+     * 
+     * @param i_work_plane The index of the work plane the vector block is located on.
+     * @param i_vector_block The index of the vector block to get.
+     * @param vb A reference to the object into which the vector block should be read.
+     */
     void GetVectorBlock(const int i_work_plane, const int i_vector_block, VectorBlock& vb) const;
 
+    
+    /**
+     * @brief Caches the full job into memory.
+     * 
+     * Overrides any previous calls regarding caching strategy.
+     */
     void CacheFullJob();
+
+    /**
+     * @brief Only caches the work plane shells into memory.
+     * 
+     * Overrides any previous calls regarding caching strategy.
+     */
     void CacheWorkPlaneShells();
+
+    /**
+     * @brief Clears all caches.
+     * 
+     * Overrides any previous calls regarding caching strategy.
+     */
     void ClearCache();
+
+    /**
+     * @brief Reports whether the work plane shells are cached.
+     * 
+     * If the full job is cached, that implies the work plane shells are always
+     * cached as well.
+     */
     bool IsWorkPlaneShellsCached() const;
+    
+    /**
+     * @brief Reports whether the full job is cached.
+     */
     bool IsFullJobCached() const;
 
 private:
