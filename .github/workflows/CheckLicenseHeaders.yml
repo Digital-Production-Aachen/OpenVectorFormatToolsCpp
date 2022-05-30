@@ -1,0 +1,21 @@
+name: CheckLicneseHeaders
+
+on: [push, pull_request]
+
+jobs:
+  check_license:
+    runs-on: windows-latest
+    steps:
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Check license headers
+      run: python manage_license_headers.py ci
