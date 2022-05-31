@@ -33,7 +33,7 @@ import re
 ###### parameter section ######
 
 # path where a file with the license header to use is found
-header_path = "license_header.txt"
+header_path = r"code_file_header.txt"
 
 # dictionary with file types to process and in and out markers for block comments
 file_types = {
