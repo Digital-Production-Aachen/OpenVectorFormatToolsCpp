@@ -33,7 +33,7 @@ SOFTWARE.
 #include <optional>
 #include <shared_mutex>
 
-#ifdef WIN32
+#if (defined WIN32 || defined _WIN32)
 #  include "memory_mapping_win32.h"
 #else
 #  error POSIX

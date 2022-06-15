@@ -28,8 +28,8 @@ SOFTWARE.
 
 #pragma once
 
-#ifndef WIN32
-#  error win32 headers included for non-win32 build 
+#if (!defined WIN32 && !defined _WIN32)
+#  error win32 headers included for non-win32 build
 #endif
 
 #include <string>
