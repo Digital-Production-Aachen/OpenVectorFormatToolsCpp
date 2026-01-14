@@ -57,13 +57,13 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/)
 include(config_safe_guards)
 
 # Conan
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake OPTIONAL
-        RESULT_VARIABLE CONAN_FOUND)
-if (CONAN_FOUND)
-  conan_basic_setup()
-else()
-  message("Conan build information was not found. Libraries resolution will be against system include paths.")
-endif()
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake OPTIONAL
+#        RESULT_VARIABLE CONAN_FOUND)
+#if (CONAN_FOUND)
+#  conan_basic_setup()
+#else()
+#  message("Conan build information was not found. Libraries resolution will be against system include paths.")
+#endif()
 
 # First-party library
 add_subdirectory(reader_writer)

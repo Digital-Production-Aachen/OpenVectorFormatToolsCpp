@@ -28,7 +28,7 @@ SOFTWARE.
 
 set(PROTO_BASE_PATH ${PROJECT_SOURCE_DIR}/OpenVectorFormat)
 
-find_package(Protobuf REQUIRED)
+find_package(Protobuf CONFIG REQUIRED)
 set(Protobuf_IMPORT_DIRS ${PROTO_BASE_PATH})
 protobuf_generate_cpp(
     PROTO_SRCS
